@@ -109,7 +109,17 @@ public class UserBean implements java.io.Serializable {
     }
 
     public boolean verifyPassword(String plain, String hashed) {
-        return hashPassword(plain).equals(hashed);
+        if (hashed == null) {
+            return false;
+        }
+        if (hashPassword(plain).equals(hashed)) {
+            return true;
+        }
+
+        // Older setup.sql used this incorrect hash while documenting bloom123.
+        // Keep it accepted so existing local Eclipse/MySQL databases still work.
+        return "bloom123".equals(plain)
+            && "GLoBvJ4ddKjVtR5bGaw+njw7H6T12Mw+Kh0MnY5/WrM=".equals(hashed);
     }
 
     // ── Email validation ──────────────────────────────────

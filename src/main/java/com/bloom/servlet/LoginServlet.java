@@ -31,7 +31,7 @@ public class LoginServlet extends HttpServlet {
             session.setAttribute("cartCount", 0);
 
             // Admin redirect
-            if ("ADMIN".equals(user.getRole())) {
+            if ("ADMIN".equalsIgnoreCase(user.getRole() != null ? user.getRole().trim() : "")) {
                 session.setAttribute("admin", user);  // Set admin attribute for admin pages
                 res.sendRedirect(req.getContextPath() + "/AdminServlet");
             } else {

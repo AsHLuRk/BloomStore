@@ -66,6 +66,6 @@ public class AdminServlet extends HttpServlet {
         HttpSession session = req.getSession(false);
         if (session == null) return false;
         User user = (User) session.getAttribute("user");
-        return user != null && "ADMIN".equals(user.getRole());
+        return user != null && "ADMIN".equalsIgnoreCase(user.getRole() != null ? user.getRole().trim() : "");
     }
 }

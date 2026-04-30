@@ -1,5 +1,33 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%
+  if (request.getAttribute("products") == null) {
+    com.bloom.dao.ProductDAO productDAO = new com.bloom.dao.ProductDAO();
+    String search = request.getParameter("search");
+    String category = request.getParameter("cat");
+    java.util.List<com.bloom.model.Product> products;
+
+    if (search != null && !search.trim().isEmpty()) {
+      products = productDAO.search(search.trim());
+    } else if ("new".equalsIgnoreCase(category)) {
+      products = productDAO.findRecent(8);
+    } else if (category != null && !category.trim().isEmpty()) {
+      String cat = category.trim().toLowerCase();
+      if ("plants".equals(cat)) {
+        products = productDAO.findByCategory("Plants");
+      } else if ("pots".equals(cat)) {
+        products = productDAO.findByCategory("Pots");
+      } else if ("care".equals(cat)) {
+        products = productDAO.findByCategory("Care");
+      } else {
+        products = productDAO.findAll();
+      }
+    } else {
+      products = productDAO.findAll();
+    }
+    request.setAttribute("products", products);
+  }
+%>
 <!DOCTYPE html>
 <html lang="en">
 <head>

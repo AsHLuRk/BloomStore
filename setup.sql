@@ -13,9 +13,13 @@ USE bloom_store;
 -- ── SEED: Users ─────────────────────────────────────────────
 -- Password for all seed users = "bloom123" (SHA-256 hashed with Base64 encoding)
 INSERT IGNORE INTO users (first_name, last_name, email, password, role) VALUES
-('Admin', 'Bloom',  'admin@bloom.com',  'GLoBvJ4ddKjVtR5bGaw+njw7H6T12Mw+Kh0MnY5/WrM=', 'ADMIN'),
-('Arjun', 'Sharma', 'arjun@example.com','GLoBvJ4ddKjVtR5bGaw+njw7H6T12Mw+Kh0MnY5/WrM=', 'USER'),
-('Priya', 'Gupta',  'priya@example.com','GLoBvJ4ddKjVtR5bGaw+njw7H6T12Mw+Kh0MnY5/WrM=', 'USER');
+('Admin', 'Bloom',  'admin@bloom.com',  'mOwMkAd8bUE6ZlAiVgtWd3NlhUuixooZkKSPQMnOJS0=', 'ADMIN'),
+('Arjun', 'Sharma', 'arjun@example.com','mOwMkAd8bUE6ZlAiVgtWd3NlhUuixooZkKSPQMnOJS0=', 'USER'),
+('Priya', 'Gupta',  'priya@example.com','mOwMkAd8bUE6ZlAiVgtWd3NlhUuixooZkKSPQMnOJS0=', 'USER');
+
+UPDATE users
+SET password = 'mOwMkAd8bUE6ZlAiVgtWd3NlhUuixooZkKSPQMnOJS0='
+WHERE email IN ('admin@bloom.com', 'arjun@example.com', 'priya@example.com');
 
 -- ── SEED: Products ──────────────────────────────────────────
 INSERT IGNORE INTO products (name, description, price, stock, category, is_featured) VALUES
@@ -40,6 +44,14 @@ INSERT IGNORE INTO products (name, description, price, stock, category, is_featu
 ('Well-Draining Potting Mix', 'Perlite-enriched soil. Excellent drainage for tropicals.',      299.00, 60, 'Care', 0),
 ('Neem Oil Spray',            'Natural pest control. Cold-pressed neem. 250ml.',               149.00, 90, 'Care', 1),
 ('Pebble Tray Set',           'Humidity tray with decorative pebbles. Set of 2.',              249.00, 40, 'Care', 0);
+
+INSERT IGNORE INTO products (name, description, price, stock, category, is_featured) VALUES
+('Areca Palm',              'Feathery indoor palm that brightens living rooms and balconies.', 899.00, 18, 'Plants', 1),
+('Calathea Orbifolia',      'Large striped leaves with a soft tropical look for shaded rooms.', 749.00, 14, 'Plants', 1),
+('Hanging Macrame Planter', 'Cotton macrame hanger with a compact planter for trailing vines.', 449.00, 32, 'Pots', 1),
+('Self-Watering Pot',       'Modern planter with a water reservoir for easy plant care.',       649.00, 24, 'Pots', 0),
+('Leaf Shine Spray',        'Gentle leaf cleaner that removes dust and adds a natural finish.', 179.00, 55, 'Care', 0),
+('Mini Gardening Tool Set', 'Small rake, trowel, and pruning snip set for indoor gardening.',   399.00, 28, 'Care', 1);
 
 -- ── VERIFICATION ────────────────────────────────────────────
 SELECT 'Users:'    AS '', COUNT(*) FROM users;

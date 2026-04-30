@@ -1,6 +1,12 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <c:if test="${empty sessionScope.admin}"><c:redirect url="../login.jsp"/></c:if>
+<%
+  if (request.getAttribute("products") == null && session.getAttribute("admin") != null) {
+    com.bloom.dao.ProductDAO productDAO = new com.bloom.dao.ProductDAO();
+    request.setAttribute("products", productDAO.findAll());
+  }
+%>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -12,13 +18,13 @@
 <body>
 <div class="admin-layout">
   <aside class="admin-sidebar">
-    <a href="dashboard.jsp" class="admin-logo">Bl<span>oo</span>m</a>
+    <a href="../AdminServlet" class="admin-logo">Bl<span>oo</span>m</a>
     <div class="admin-nav-section">
       <div class="admin-nav-label">Overview</div>
-      <a href="dashboard.jsp"         class="admin-nav-item">📊 Dashboard</a>
+      <a href="../AdminServlet"       class="admin-nav-item">📊 Dashboard</a>
       <a href="manage-products.jsp"   class="admin-nav-item active">🌿 Products</a>
-      <a href="manage-users.jsp"      class="admin-nav-item">👥 Users</a>
-      <a href="manage-orders.jsp"     class="admin-nav-item">📦 Orders</a>
+      <a href="#"                     class="admin-nav-item">👥 Users</a>
+      <a href="#"                     class="admin-nav-item">📦 Orders</a>
     </div>
     <div class="admin-nav-section">
       <div class="admin-nav-label">Settings</div>
@@ -39,7 +45,7 @@
     </c:if>
 
     <!-- Add Product Form (toggle) -->
-    <div id="addForm" style="display:none;margin-bottom:24px;">
+    <div id="addForm" style="display:${param.action == 'add' ? 'block' : 'none'};margin-bottom:24px;">
       <div class="checkout-section">
         <div class="checkout-section-title"><span class="step-num active">+</span> Add New Product</div>
         <form action="../ProductServlet" method="post">

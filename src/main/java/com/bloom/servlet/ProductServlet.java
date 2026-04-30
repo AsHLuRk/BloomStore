@@ -29,6 +29,8 @@ public class ProductServlet extends HttpServlet {
 
         if (search != null && !search.trim().isEmpty()) {
             products = productDAO.search(search.trim());
+        } else if ("new".equalsIgnoreCase(category)) {
+            products = productDAO.findRecent(8);
         } else if (category != null && !category.isEmpty()) {
             // Map URL param to DB category name
             String cat = mapCategory(category);
@@ -45,9 +47,8 @@ public class ProductServlet extends HttpServlet {
     protected void doPost(HttpServletRequest req, HttpServletResponse res)
             throws ServletException, IOException {
 
-        // Only admins can POST to ProductServlet
         HttpSession session = req.getSession(false);
-        if (session == null || session.getAttribute("admin") == null) {
+        if (session == null || !isAdmin(session)) {
             res.sendRedirect(req.getContextPath() + "/login.jsp");
             return;
         }
@@ -103,5 +104,23 @@ public class ProductServlet extends HttpServlet {
             case "care":        return "Care";
             default:            return urlParam;
         }
+    }
+
+    private boolean isAdmin(HttpSession session) {
+        Object admin = session.getAttribute("admin");
+        if (admin instanceof com.bloom.model.User) {
+            com.bloom.model.User user = (com.bloom.model.User) admin;
+            return "ADMIN".equalsIgnoreCase(user.getRole() != null ? user.getRole().trim() : "");
+        }
+
+        Object currentUser = session.getAttribute("user");
+        if (currentUser instanceof com.bloom.model.User) {
+            com.bloom.model.User user = (com.bloom.model.User) currentUser;
+            if ("ADMIN".equalsIgnoreCase(user.getRole() != null ? user.getRole().trim() : "")) {
+                session.setAttribute("admin", user);
+                return true;
+            }
+        }
+        return false;
     }
 }

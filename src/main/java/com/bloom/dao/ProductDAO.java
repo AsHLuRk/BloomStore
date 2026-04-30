@@ -65,6 +65,15 @@ public class ProductDAO {
         }
     }
 
+    /** Get latest products for the New Arrivals filter */
+    public List<Product> findRecent(int limit) {
+        try (Session session = HibernateUtil.getSessionFactory().openSession()) {
+            return session.createQuery(
+                "FROM Product WHERE stock > 0 ORDER BY createdAt DESC", Product.class)
+                .setMaxResults(limit).list();
+        }
+    }
+
     /** Find by ID */
     public Product findById(int productId) {
         try (Session session = HibernateUtil.getSessionFactory().openSession()) {

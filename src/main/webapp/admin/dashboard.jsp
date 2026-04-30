@@ -14,14 +14,14 @@
 
   <!-- Sidebar -->
   <aside class="admin-sidebar">
-    <a href="dashboard.jsp" class="admin-logo">Bl<span>oo</span>m</a>
+    <a href="../AdminServlet" class="admin-logo">Bl<span>oo</span>m</a>
 
     <div class="admin-nav-section">
       <div class="admin-nav-label">Overview</div>
-      <a href="dashboard.jsp" class="admin-nav-item active">📊 Dashboard</a>
+      <a href="../AdminServlet" class="admin-nav-item active">📊 Dashboard</a>
       <a href="manage-products.jsp" class="admin-nav-item">🌿 Products</a>
-      <a href="manage-users.jsp" class="admin-nav-item">👥 Users</a>
-      <a href="manage-orders.jsp" class="admin-nav-item">📦 Orders</a>
+      <a href="#" class="admin-nav-item">👥 Users</a>
+      <a href="#" class="admin-nav-item">📦 Orders</a>
     </div>
 
     <div class="admin-nav-section">
@@ -73,7 +73,7 @@
     <div class="admin-table-wrap">
       <div class="admin-table-header">
         <div class="admin-table-title">Recent Orders</div>
-        <a href="manage-orders.jsp" class="btn btn-outline btn-sm">View All</a>
+        <a href="#" class="btn btn-outline btn-sm">View All</a>
       </div>
       <table>
         <thead>
