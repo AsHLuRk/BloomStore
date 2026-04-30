@@ -51,7 +51,9 @@
               <div class="cart-item-img">
                 <c:choose>
                   <c:when test="${not empty item.product.imageUrl}">
-                    <img src="${item.product.imageUrl}" alt="${item.product.name}"/>
+                    <img class="cart-thumb-img" src="${item.product.imageUrl}" alt="${item.product.name}"
+                         width="80" height="80"
+                         style="width:80px;height:80px;max-width:80px;max-height:80px;object-fit:cover;display:block;"/>
                   </c:when>
                   <c:when test="${item.product.category == 'Plants'}">🌿</c:when>
                   <c:when test="${item.product.category == 'Pots'}">🪴</c:when>
