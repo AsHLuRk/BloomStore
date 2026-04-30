@@ -11,11 +11,11 @@ USE bloom_store;
 --    Run this file just for seed data after first startup.
 
 -- ── SEED: Users ─────────────────────────────────────────────
--- Password for all seed users = "bloom123" (SHA-256 hashed)
+-- Password for all seed users = "bloom123" (SHA-256 hashed with Base64 encoding)
 INSERT IGNORE INTO users (first_name, last_name, email, password, role) VALUES
-('Admin', 'Bloom',  'admin@bloom.com',  'SHA256_HASH_OF_bloom123', 'ADMIN'),
-('Arjun', 'Sharma', 'arjun@example.com','SHA256_HASH_OF_bloom123', 'USER'),
-('Priya', 'Gupta',  'priya@example.com','SHA256_HASH_OF_bloom123', 'USER');
+('Admin', 'Bloom',  'admin@bloom.com',  'GLoBvJ4ddKjVtR5bGaw+njw7H6T12Mw+Kh0MnY5/WrM=', 'ADMIN'),
+('Arjun', 'Sharma', 'arjun@example.com','GLoBvJ4ddKjVtR5bGaw+njw7H6T12Mw+Kh0MnY5/WrM=', 'USER'),
+('Priya', 'Gupta',  'priya@example.com','GLoBvJ4ddKjVtR5bGaw+njw7H6T12Mw+Kh0MnY5/WrM=', 'USER');
 
 -- ── SEED: Products ──────────────────────────────────────────
 INSERT IGNORE INTO products (name, description, price, stock, category, is_featured) VALUES

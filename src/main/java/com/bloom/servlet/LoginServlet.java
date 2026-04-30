@@ -32,7 +32,8 @@ public class LoginServlet extends HttpServlet {
 
             // Admin redirect
             if ("ADMIN".equals(user.getRole())) {
-                res.sendRedirect(req.getContextPath() + "/admin/dashboard.jsp");
+                session.setAttribute("admin", user);  // Set admin attribute for admin pages
+                res.sendRedirect(req.getContextPath() + "/AdminServlet");
             } else {
                 // Redirect back to intended page or home
                 String redirect = (String) session.getAttribute("redirectAfterLogin");

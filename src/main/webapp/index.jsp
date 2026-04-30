@@ -1,5 +1,12 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%
+  // Load featured products from ProductDAO if not already set
+  if (request.getAttribute("featuredProducts") == null) {
+    com.bloom.dao.ProductDAO productDAO = new com.bloom.dao.ProductDAO();
+    request.setAttribute("featuredProducts", productDAO.findFeatured());
+  }
+%>
 <!DOCTYPE html>
 <html lang="en">
 <head>
