@@ -50,6 +50,9 @@
             <div class="cart-item">
               <div class="cart-item-img">
                 <c:choose>
+                  <c:when test="${not empty item.product.imageUrl}">
+                    <img src="${item.product.imageUrl}" alt="${item.product.name}"/>
+                  </c:when>
                   <c:when test="${item.product.category == 'Plants'}">🌿</c:when>
                   <c:when test="${item.product.category == 'Pots'}">🪴</c:when>
                   <c:otherwise>💧</c:otherwise>
