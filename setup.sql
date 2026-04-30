@@ -54,5 +54,19 @@ INSERT IGNORE INTO products (name, description, price, stock, category, is_featu
 ('Mini Gardening Tool Set', 'Small rake, trowel, and pruning snip set for indoor gardening.',   399.00, 28, 'Care', 1);
 
 -- ── VERIFICATION ────────────────────────────────────────────
+UPDATE products SET image_url = 'https://images.unsplash.com/photo-1614594975525-e45190c55d0b?auto=format&fit=crop&w=800&q=80' WHERE name = 'Monstera Deliciosa';
+UPDATE products SET image_url = 'https://images.unsplash.com/photo-1598880940080-ff9a29891b85?auto=format&fit=crop&w=800&q=80' WHERE name = 'Peace Lily';
+UPDATE products SET image_url = 'https://images.unsplash.com/photo-1593691509543-c55fb32d8de5?auto=format&fit=crop&w=800&q=80' WHERE name = 'Snake Plant';
+UPDATE products SET image_url = 'https://images.unsplash.com/photo-1622398925373-3f91b1e275f5?auto=format&fit=crop&w=800&q=80' WHERE name = 'Pothos Golden';
+UPDATE products SET image_url = 'https://images.unsplash.com/photo-1463320726281-696a485928c7?auto=format&fit=crop&w=800&q=80' WHERE name IN ('Rubber Plant', 'Fiddle Leaf Fig', 'ZZ Plant', 'Bird of Paradise');
+UPDATE products SET image_url = 'https://images.unsplash.com/photo-1604762524889-3e2fcc145683?auto=format&fit=crop&w=800&q=80' WHERE name = 'Areca Palm';
+UPDATE products SET image_url = 'https://images.unsplash.com/photo-1616500285636-f5dca1191dbe?auto=format&fit=crop&w=800&q=80' WHERE name = 'Calathea Orbifolia';
+UPDATE products SET image_url = 'https://images.unsplash.com/photo-1485955900006-10f4d324d411?auto=format&fit=crop&w=800&q=80' WHERE name = 'Terracotta Classic Pot';
+UPDATE products SET image_url = 'https://images.unsplash.com/photo-1602923668104-8f483c6e8f82?auto=format&fit=crop&w=800&q=80' WHERE name = 'Hanging Macrame Planter';
+UPDATE products SET image_url = 'https://images.unsplash.com/photo-1501004318641-b39e6451bec6?auto=format&fit=crop&w=800&q=80' WHERE name IN ('Self-Watering Pot', 'Ceramic Matte White', 'Woven Rattan Basket', 'Cement Cylinder Pot');
+UPDATE products SET image_url = 'https://images.unsplash.com/photo-1611073061165-68a6f8080f29?auto=format&fit=crop&w=800&q=80' WHERE name IN ('Organic Liquid Fertiliser', 'Neem Oil Spray', 'Leaf Shine Spray');
+UPDATE products SET image_url = 'https://images.unsplash.com/photo-1416879595882-3373a0480b5b?auto=format&fit=crop&w=800&q=80' WHERE name = 'Mini Gardening Tool Set';
+UPDATE products SET image_url = 'https://images.unsplash.com/photo-1459156212016-c812468e2115?auto=format&fit=crop&w=800&q=80' WHERE name IN ('Well-Draining Potting Mix', 'Pebble Tray Set');
+
 SELECT 'Users:'    AS '', COUNT(*) FROM users;
 SELECT 'Products:' AS '', COUNT(*) FROM products;
