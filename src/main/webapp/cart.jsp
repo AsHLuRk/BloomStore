@@ -36,7 +36,7 @@
 </div>
 
 <c:choose>
-  <c:when test="${not empty sessionScope.cart && sessionScope.cart.size() > 0}">
+  <c:when test="${not empty sessionScope.cart && sessionScope.cart.totalCount > 0}">
     <div class="cart-layout">
 
       <!-- Cart items -->
@@ -46,7 +46,7 @@
         </c:if>
 
         <div class="cart-items">
-          <c:forEach var="item" items="${sessionScope.cart}">
+          <c:forEach var="item" items="${sessionScope.cart.items}">
             <div class="cart-item">
               <div class="cart-item-img">
                 <c:choose>

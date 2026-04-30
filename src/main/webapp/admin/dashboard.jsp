@@ -7,27 +7,27 @@
   <meta charset="UTF-8"/>
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Admin Dashboard · Bloom</title>
-  <link rel="stylesheet" href="../css/bloom.css"/>
+  <link rel="stylesheet" href="${pageContext.request.contextPath}/css/bloom.css"/>
 </head>
 <body>
 <div class="admin-layout">
 
   <!-- Sidebar -->
   <aside class="admin-sidebar">
-    <a href="../AdminServlet" class="admin-logo">Bl<span>oo</span>m</a>
+    <a href="${pageContext.request.contextPath}/AdminServlet" class="admin-logo">Bl<span>oo</span>m</a>
 
     <div class="admin-nav-section">
       <div class="admin-nav-label">Overview</div>
-      <a href="../AdminServlet" class="admin-nav-item active">📊 Dashboard</a>
-      <a href="manage-products.jsp" class="admin-nav-item">🌿 Products</a>
+      <a href="${pageContext.request.contextPath}/AdminServlet" class="admin-nav-item active">📊 Dashboard</a>
+      <a href="${pageContext.request.contextPath}/admin/manage-products.jsp" class="admin-nav-item">🌿 Products</a>
       <a href="#" class="admin-nav-item">👥 Users</a>
       <a href="#" class="admin-nav-item">📦 Orders</a>
     </div>
 
     <div class="admin-nav-section">
       <div class="admin-nav-label">Settings</div>
-      <a href="../index.jsp" class="admin-nav-item">🏠 View Store</a>
-      <a href="../LogoutServlet" class="admin-nav-item" style="color:rgba(255,100,100,0.6);">🚪 Sign Out</a>
+      <a href="${pageContext.request.contextPath}/index.jsp" class="admin-nav-item">🏠 View Store</a>
+      <a href="${pageContext.request.contextPath}/LogoutServlet" class="admin-nav-item" style="color:rgba(255,100,100,0.6);">🚪 Sign Out</a>
     </div>
   </aside>
 
@@ -38,7 +38,7 @@
         <h1 class="admin-page-title">Dashboard</h1>
         <p style="font-size:0.83rem;color:var(--muted);margin-top:4px;">Welcome back, Admin</p>
       </div>
-      <a href="manage-products.jsp?action=add" class="btn btn-terra">+ Add Product</a>
+      <a href="${pageContext.request.contextPath}/admin/manage-products.jsp?action=add" class="btn btn-terra">+ Add Product</a>
     </div>
 
     <!-- Stats grid -->
@@ -101,7 +101,7 @@
                 <span class="status-badge status-${order.status.toLowerCase()}">${order.status}</span>
               </td>
               <td>
-                <form action="AdminServlet" method="post" style="display:inline;">
+                <form action="${pageContext.request.contextPath}/AdminServlet" method="post" style="display:inline;">
                   <input type="hidden" name="action" value="updateStatus"/>
                   <input type="hidden" name="orderId" value="${order.orderId}"/>
                   <select name="status" onchange="this.form.submit()"
@@ -128,7 +128,7 @@
       <div style="margin-top:28px;" class="admin-table-wrap">
         <div class="admin-table-header">
           <div class="admin-table-title" style="color:var(--terracotta);">⚠️ Low Stock Alert</div>
-          <a href="manage-products.jsp" class="btn btn-outline btn-sm">Manage Inventory</a>
+          <a href="${pageContext.request.contextPath}/admin/manage-products.jsp" class="btn btn-outline btn-sm">Manage Inventory</a>
         </div>
         <table>
           <thead><tr><th>Product</th><th>Category</th><th>Stock Left</th><th>Price</th><th>Action</th></tr></thead>
@@ -139,7 +139,7 @@
                 <td>${p.category}</td>
                 <td><span style="color:var(--terracotta);font-weight:700;">${p.stock}</span></td>
                 <td>₹${p.price}</td>
-                <td><a href="manage-products.jsp?edit=${p.productId}" class="btn btn-outline btn-sm">Update Stock</a></td>
+                <td><a href="${pageContext.request.contextPath}/admin/manage-products.jsp?edit=${p.productId}" class="btn btn-outline btn-sm">Update Stock</a></td>
               </tr>
             </c:forEach>
           </tbody>

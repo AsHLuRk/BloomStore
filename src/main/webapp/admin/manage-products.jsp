@@ -13,23 +13,23 @@
   <meta charset="UTF-8"/>
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Manage Products · Bloom Admin</title>
-  <link rel="stylesheet" href="../css/bloom.css"/>
+  <link rel="stylesheet" href="${pageContext.request.contextPath}/css/bloom.css"/>
 </head>
 <body>
 <div class="admin-layout">
   <aside class="admin-sidebar">
-    <a href="../AdminServlet" class="admin-logo">Bl<span>oo</span>m</a>
+    <a href="${pageContext.request.contextPath}/AdminServlet" class="admin-logo">Bl<span>oo</span>m</a>
     <div class="admin-nav-section">
       <div class="admin-nav-label">Overview</div>
-      <a href="../AdminServlet"       class="admin-nav-item">📊 Dashboard</a>
-      <a href="manage-products.jsp"   class="admin-nav-item active">🌿 Products</a>
+      <a href="${pageContext.request.contextPath}/AdminServlet" class="admin-nav-item">📊 Dashboard</a>
+      <a href="${pageContext.request.contextPath}/admin/manage-products.jsp" class="admin-nav-item active">🌿 Products</a>
       <a href="#"                     class="admin-nav-item">👥 Users</a>
       <a href="#"                     class="admin-nav-item">📦 Orders</a>
     </div>
     <div class="admin-nav-section">
       <div class="admin-nav-label">Settings</div>
-      <a href="../index.jsp"          class="admin-nav-item">🏠 View Store</a>
-      <a href="../LogoutServlet"      class="admin-nav-item" style="color:rgba(255,100,100,0.6);">🚪 Sign Out</a>
+      <a href="${pageContext.request.contextPath}/index.jsp" class="admin-nav-item">🏠 View Store</a>
+      <a href="${pageContext.request.contextPath}/LogoutServlet" class="admin-nav-item" style="color:rgba(255,100,100,0.6);">🚪 Sign Out</a>
     </div>
   </aside>
 
@@ -48,7 +48,7 @@
     <div id="addForm" style="display:${param.action == 'add' ? 'block' : 'none'};margin-bottom:24px;">
       <div class="checkout-section">
         <div class="checkout-section-title"><span class="step-num active">+</span> Add New Product</div>
-        <form action="../ProductServlet" method="post">
+        <form action="${pageContext.request.contextPath}/ProductServlet" method="post">
           <input type="hidden" name="action" value="add"/>
           <div class="field-row">
             <div class="field"><label>Product Name</label>
@@ -109,8 +109,8 @@
               <td>${p.featured ? '⭐' : '—'}</td>
               <td>
                 <div style="display:flex;gap:8px;">
-                  <a href="manage-products.jsp?edit=${p.productId}" class="btn btn-outline btn-sm">Edit</a>
-                  <form action="../ProductServlet" method="post" style="display:inline;"
+                  <a href="${pageContext.request.contextPath}/admin/manage-products.jsp?edit=${p.productId}" class="btn btn-outline btn-sm">Edit</a>
+                  <form action="${pageContext.request.contextPath}/ProductServlet" method="post" style="display:inline;"
                         onsubmit="return confirm('Delete ${p.name}?')">
                     <input type="hidden" name="action" value="delete"/>
                     <input type="hidden" name="productId" value="${p.productId}"/>

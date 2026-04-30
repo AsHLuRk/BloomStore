@@ -77,6 +77,11 @@ public class CartBean implements java.io.Serializable {
         return items.isEmpty();
     }
 
+    /** Compatibility for JSP EL calls like cart.size() */
+    public int size() {
+        return items.size();
+    }
+
     // ── Computed Properties ───────────────────────────────
 
     /** Total number of individual items */

@@ -203,7 +203,7 @@
   <div>
     <div class="cart-summary">
       <div class="summary-title">Order Summary</div>
-      <c:forEach var="item" items="${sessionScope.cart}">
+      <c:forEach var="item" items="${sessionScope.cart.items}">
         <div style="display:flex;justify-content:space-between;align-items:center;padding:10px 0;border-bottom:1px solid var(--border);font-size:0.87rem;">
           <div>
             <div style="color:var(--charcoal);font-weight:500;">${item.product.name}</div>
