@@ -1,9 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
-<%-- Redirect if already logged in --%>
-<c:if test="${not empty sessionScope.user}">
-  <c:redirect url="index.jsp"/>
-</c:if>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -29,6 +25,17 @@
       </c:if>
       <c:if test="${not empty success}">
         <div class="alert alert-success">✅ ${success}</div>
+      </c:if>
+
+      <c:if test="${not empty sessionScope.loginMessage}">
+        <div class="alert alert-error">${sessionScope.loginMessage}</div>
+        <% session.removeAttribute("loginMessage"); %>
+      </c:if>
+      <c:if test="${not empty sessionScope.user}">
+        <div class="alert alert-success">
+          Signed in as ${sessionScope.user.email}. Enter another account below or
+          <a href="LogoutServlet">sign out</a>.
+        </div>
       </c:if>
 
       <form action="LoginServlet" method="post">

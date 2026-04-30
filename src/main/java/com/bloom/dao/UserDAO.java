@@ -31,8 +31,8 @@ public class UserDAO {
     public User findByEmail(String email) {
         try (Session session = HibernateUtil.getSessionFactory().openSession()) {
             Query<User> query = session.createQuery(
-                "FROM User WHERE email = :email", User.class);
-            query.setParameter("email", email);
+                "FROM User WHERE LOWER(email) = :email", User.class);
+            query.setParameter("email", email == null ? null : email.trim().toLowerCase());
             return query.uniqueResult();
         } catch (Exception e) {
             System.err.println("UserDAO.findByEmail error: " + e.getMessage());

@@ -26,7 +26,13 @@ public class LoginServlet extends HttpServlet {
 
         if (user != null) {
             // ── Login successful ──────────────────────────
-            HttpSession session = req.getSession();
+            HttpSession oldSession = req.getSession(false);
+            String redirect = oldSession == null ? null : (String) oldSession.getAttribute("redirectAfterLogin");
+            if (oldSession != null) {
+                oldSession.invalidate();
+            }
+
+            HttpSession session = req.getSession(true);
             session.setAttribute("user", user);
             session.setAttribute("cartCount", 0);
 
@@ -36,9 +42,7 @@ public class LoginServlet extends HttpServlet {
                 res.sendRedirect(req.getContextPath() + "/AdminServlet");
             } else {
                 // Redirect back to intended page or home
-                String redirect = (String) session.getAttribute("redirectAfterLogin");
                 if (redirect != null) {
-                    session.removeAttribute("redirectAfterLogin");
                     res.sendRedirect(redirect);
                 } else {
                     res.sendRedirect(req.getContextPath() + "/index.jsp");

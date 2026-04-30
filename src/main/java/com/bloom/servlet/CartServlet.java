@@ -26,6 +26,16 @@ public class CartServlet extends HttpServlet {
         HttpSession session  = req.getSession();
         String action        = req.getParameter("action");
 
+        if (session.getAttribute("user") == null) {
+            String referer = req.getHeader("Referer");
+            if (referer != null && !referer.contains("LoginServlet")) {
+                session.setAttribute("redirectAfterLogin", referer);
+            }
+            session.setAttribute("loginMessage", "Please sign in before adding products to your cart.");
+            res.sendRedirect(req.getContextPath() + "/login.jsp");
+            return;
+        }
+
         // Get or create CartBean in session
         CartBean cart = (CartBean) session.getAttribute("cart");
         if (cart == null) {
